@@ -32,6 +32,8 @@ public:
     bool requestTemperature(unsigned long time);
     bool requestDistance(unsigned long time);
     bool waitResult(const char* cmd, unsigned long time);
+
+    float getValue(const char* cmd);
     float getHumidity();
     float getTemperature();
     uint16_t getDistance();
@@ -46,7 +48,6 @@ public:
 private:
     void processInput();
     const char* processCommand();
-    float getValue(const char* cmd);
     size_t splitString(char* strInput, const char* delims);
 
     Stream& stream;

@@ -50,6 +50,16 @@ bool ERaConsole::waitResult(const char* cmdExpected, unsigned long time) {
     return false;
 }
 
+float ERaConsole::getValue(const char* cmd) {
+    for (int i = 0; i < this->numCommand; ++i) {
+        if (strcmp(this->eCmd[i].cmd, cmd) != 0) {
+            continue;
+        }
+        return this->eCmd[i].value;
+    }
+    return 0;
+}
+
 float ERaConsole::getHumidity() {
     return this->getValue("H");
 }
@@ -163,16 +173,6 @@ const char* ERaConsole::processCommand() {
         ERa.virtualWrite(this->eCmd[i].pin, this->eCmd[i].value);
     }
     return cmd;
-}
-
-float ERaConsole::getValue(const char* cmd) {
-    for (int i = 0; i < this->numCommand; ++i) {
-        if (strcmp(this->eCmd[i].cmd, cmd) != 0) {
-            continue;
-        }
-        return this->eCmd[i].value;
-    }
-    return 0;
 }
 
 size_t ERaConsole::splitString(char* strInput, const char* delims) {
