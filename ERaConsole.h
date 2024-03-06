@@ -27,6 +27,7 @@ public:
     ERaConsole(Stream& st);
     ~ERaConsole();
 
+    bool request(const char* cmd, unsigned long time = 100UL);
     bool requestHumidity(unsigned long time);
     bool requestTemperature(unsigned long time);
     bool requestDistance(unsigned long time);

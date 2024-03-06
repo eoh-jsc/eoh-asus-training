@@ -15,19 +15,21 @@ ERaConsole::ERaConsole(Stream& st)
 ERaConsole::~ERaConsole()
 {}
 
+bool ERaConsole::request(const char* cmd, unsigned long time) {
+    this->write(cmd);
+    return this->waitResult(cmd, time);
+}
+
 bool ERaConsole::requestHumidity(unsigned long time) {
-    this->write("H");
-    return this->waitResult("H", time);
+    return this->request("H", time);
 }
 
 bool ERaConsole::requestTemperature(unsigned long time) {
-    this->write("T");
-    return this->waitResult("T", time);
+    return this->request("T", time);
 }
 
 bool ERaConsole::requestDistance(unsigned long time) {
-    this->write("S");
-    return this->waitResult("S", time);
+    return this->request("S", time);
 }
 
 bool ERaConsole::waitResult(const char* cmdExpected, unsigned long time) {
